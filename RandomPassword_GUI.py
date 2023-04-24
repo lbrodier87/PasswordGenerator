@@ -12,13 +12,21 @@ win.iconbitmap("key.ico")
 #generate password with user inputs and add to output text area
 def doGenPwd():
     out_txt.delete('1.0', 'end') #reset output text area
-    #errors handling
-    if(int(pwd_len.get()) < 4):
-        out_txt.insert('end', 'Error: \nPassword length must be at least 4.')
+    # errors handling: min pwd length
+    nb_sets = 0
+    if(lwrchar_bool.get() == True): nb_sets += 1
+    if(upchar_bool.get() == True): nb_sets += 1
+    if(num_bool.get() == True): nb_sets += 1
+    if(sym_bool.get() == True): nb_sets += 1
+    #if pwd length is smaller than minimum possible from input
+    if(force_bool.get() == True and int(pwd_len.get()) < nb_sets):
+        out_txt.insert('end', 'Error: \nPassword length must be at least ' + str(nb_sets) + '.')
         return(0)
-    if(lwrchar_bool.get() == False and upchar_bool.get() == False and num_bool.get()==False and sym_bool.get()==False):
+    #at least one set must be selected
+    if(nb_sets == 0):
         out_txt.insert('end', 'Error: \nAt least 1 character-set must be selected.')
         return(0)
+    
     #generate password with input settings (returns a global variable)
     global currentpwd 
     currentpwd = generatePwd(int(pwd_len.get()), int(pwd_rep.get()), \
@@ -106,7 +114,7 @@ pwd_len.grid(row=0, column=1, sticky="W")
 pwd_rep_label = tk.Label(frame22, text="repetitions: ")
 pwd_rep_label.grid(row=1, column=0, sticky='w')
 pwd_rep = tk.Entry(frame22, width=10)
-pwd_rep.insert('end', 8) #default value
+pwd_rep.insert('end', 5) #default value
 pwd_rep.grid(row=1, column=1, sticky="W")
 
 ## FRAME 3 - generate password + save as buttons
@@ -127,7 +135,7 @@ autoOpen.grid(row=0, column=2)
 ## FRAME 4 - output text area
 frame4 = tk.Frame(win)
 frame4.grid(row=4, column=0, sticky='nesw', columnspan=2)
-out_txt = tk.Text(frame4, width=45, height=10)
+out_txt = tk.Text(frame4, width=45, height=6)
 out_txt.grid(row=0, column=0, sticky='nesw')
 
 #bring main window to front (run just before mainloop)

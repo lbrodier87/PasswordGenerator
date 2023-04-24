@@ -8,7 +8,7 @@ Tkinter GUI for password generator. Calls generatePwd() from RandomPasswordGener
 bat file for launching the GUI on Windows (you can shortcut this file to desktop). 
 
 ## RandomPasswordGenerator.py
-Contains main function for password generation generatePwd(), with following parameters
+Contains main function for password generation generatePwd(), with following parameters: 
 - length:int=12, length of generated password
 - rep:int=1, number of password to generate
 - lwrc:bool=True, include lowercase character set

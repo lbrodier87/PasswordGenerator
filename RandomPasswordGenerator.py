@@ -7,7 +7,7 @@ uppercase = string.ascii_uppercase
 numbers = "1234567890"
 symbols = "+-*%^~=&/\()[]{}?!@#.,_"
 
-def generatePwd(length:int=12, rep:int=1, lwrc:bool=True, uprc:bool=True, num:bool=True, sym:bool=True, forceCheckContent:bool=True):
+def generatePwd(length:int=16, rep:int=5, lwrc:bool=True, uprc:bool=True, num:bool=True, sym:bool=True, forceCheckContent:bool=True):
     # error if pwd does not contain any character set... 
     if not lwrc and not uprc and not num and not sym:
         raise Exception("At leat one character set must be active...")

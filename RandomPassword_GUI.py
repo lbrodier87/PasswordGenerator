@@ -108,7 +108,7 @@ frame22.grid(row=1, column=0, sticky='nesw')
 pwd_len_label = tk.Label(frame22, text="password length: ")
 pwd_len_label.grid(row=0, column=0, sticky='w')
 pwd_len = tk.Entry(frame22, width=10)
-pwd_len.insert('end', 12) #default value
+pwd_len.insert('end', 16) #default value
 pwd_len.grid(row=0, column=1, sticky="W")
 
 pwd_rep_label = tk.Label(frame22, text="repetitions: ")
